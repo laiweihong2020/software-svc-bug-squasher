@@ -23,7 +23,8 @@ const Solve = () => {
     fetch('/api/files')
       .then(response => response.json())
       .then(data => {
-        setFiles(data.files);
+				const filteredFiles = data.files.filter(file => file !== 'triage.html');
+				setFiles(filteredFiles);
         fetchFileContent(selectedFile);
       })
       .catch(error => console.error('Error fetching files:', error));
@@ -84,7 +85,7 @@ const Solve = () => {
   return (
     <div>
       <header className="page-header">
-        <h1>Solve</h1>
+        <h1>APU Student Visit 2024 Bug Squasher - Solve</h1>
       </header>
       <div className="container">
         <section className="left-section">

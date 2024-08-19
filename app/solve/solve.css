@@ -45,3 +45,28 @@ html, body {
 .btn {
     margin: 5px;
 }
+
+.page-header {
+    padding: 10px 20px; /* Add left and right padding to match the code block */
+    background-color: #b11e84;
+    color: white;
+    text-align: center;
+}
+
+.btn {
+    background-color: #b11e84;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.file-dropdown {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

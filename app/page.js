@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div>
       <header className="page-header">
-        <h1>Login</h1>
+        <h1>APU Student Visit 2024 Bug Squasher - Login</h1>
       </header>
       <div className="login-container">
         <form className="login-form" onSubmit={handleLogin}>

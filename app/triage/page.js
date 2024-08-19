@@ -20,6 +20,8 @@ const TriagePage = () => {
   const [htmlContent, setHtmlContent] = useState('');
   const [lineNumbers, setLineNumbers] = useState('');
   const [files, setFiles] = useState([]);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState('');
   const [selectedFile, setSelectedFile] = useState('index.html'); // Set default file to index.html
   const quillRef = useRef(null);
   const quillInstance = useRef(null);
@@ -27,7 +29,10 @@ const TriagePage = () => {
   useEffect(() => {
     fetch('/api/files')
       .then(response => response.json())
-      .then(data => setFiles(data.files))
+      .then(data => {
+        const filteredFiles = data.files.filter(file => file !== 'triage.html');
+        setFiles(filteredFiles);
+      })
       .catch(error => console.error('Error fetching files:', error));
   }, []);
 
@@ -116,13 +121,22 @@ const TriagePage = () => {
       .catch(error => {
         console.error('Error submitting triage content:', error);
       });
+
+      // On successful submission
+      setBannerMessage('Submission successful!');
+      setIsBannerVisible(true);
+
+      // Hide the banner after a few seconds (optional)
+      setTimeout(() => {
+        setIsBannerVisible(false);
+      }, 3000); // Adjust the timeout duration as needed
     }
   };
 
   return (
     <div>
       <header className="page-header">
-        <h1>Triage</h1>
+        <h1>APU Student Visit 2024 Bug Squasher - Triage</h1>
       </header>
       <div className="container">
         <section className="left-section">
@@ -142,6 +156,11 @@ const TriagePage = () => {
         <div className="divider"></div>
         <section className="right-section">
           <div ref={quillRef} className="text-box"></div>
+          {isBannerVisible && (
+            <div className="banner">
+              {bannerMessage}
+            </div>
+          )}
           <button onClick={handleSubmit} className="btn">
             Submit
           </button>
