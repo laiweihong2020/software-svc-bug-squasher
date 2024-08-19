@@ -1,0 +1,56 @@
+/* home.css */
+html, body {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.page-header {
+    padding: 10px 20px; /* Add left and right padding to match the code block */
+    background-color: #b11e84;
+    color: white;
+    text-align: center;
+}
+  
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 70%; /* Increased width */
+  padding: 30px; /* Increased padding */
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.login-form label {
+  margin-bottom: 10px;
+}
+
+.login-form input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  width: 100%; /* Make input fields expand to full width */
+}
+
+.login-form button {
+  padding: 10px;
+  background-color: #b11e84;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #9c1a6e;
+}

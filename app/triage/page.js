@@ -8,6 +8,13 @@ import 'quill/dist/quill.snow.css'; // Import Quill CSS
 import './triage.css'; // Import the CSS file
 import Quill from 'quill';
 
+// Function to get the value of a cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 const TriagePage = () => {
   const router = useRouter();
   const [htmlContent, setHtmlContent] = useState('');
@@ -25,8 +32,10 @@ const TriagePage = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedFile) {
-      fetch(`/resource/snake/${selectedFile}`)
+    const username = getCookie('username');
+
+    if (selectedFile && username) {
+      fetch(`/resource/${username}/${selectedFile}`)
         .then(response => response.text())
         .then(data => {
           setHtmlContent(data);
@@ -38,6 +47,24 @@ const TriagePage = () => {
         .catch(error => console.error('Error fetching HTML content:', error));
     }
   }, [selectedFile]);
+
+  useEffect(() => {
+    const username = getCookie('username');
+
+    if (username) {
+      fetch(`/resource/${username}/triage.html`)
+        .then(response => response.text())
+        .then(data => {
+          if (quillInstance.current) {
+            quillInstance.current.root.innerHTML = data;
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching Quill content:', error)
+          quillInstance.current.root.innerHTML = '';
+        });
+    }
+  }, []);
 
   useEffect(() => {
     if (quillRef.current && !quillInstance.current) {
@@ -63,6 +90,35 @@ const TriagePage = () => {
     router.push('/solve');
   };
 
+  const handleSubmit = () => {
+    if (quillInstance.current) {
+      const content = quillInstance.current.root.innerHTML;
+      const username = getCookie('username');
+
+      if (!username) {
+        console.error('Username cookie not found');
+        return;
+      }
+
+      console.log('Submitted content:', content);
+      // Add your submission logic here (e.g., send content to the server)
+      fetch('/api/submission/triage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content, username }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Triage submission response:', data);
+      })
+      .catch(error => {
+        console.error('Error submitting triage content:', error);
+      });
+    }
+  };
+
   return (
     <div>
       <header className="page-header">
@@ -86,6 +142,9 @@ const TriagePage = () => {
         <div className="divider"></div>
         <section className="right-section">
           <div ref={quillRef} className="text-box"></div>
+          <button onClick={handleSubmit} className="btn">
+            Submit
+          </button>
           <button onClick={navigateToSolve} className="btn">
             Go to Solve Page
           </button>
