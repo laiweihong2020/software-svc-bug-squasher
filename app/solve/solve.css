@@ -1,49 +1,12 @@
-/* Prevent the page from being scrollable */
+/* solve.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 html, body {
     overflow: hidden;
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    display: flex;
-    height: 100vh;
-    padding: 20px; /* Add padding to the container */
-}
-
-.left-section, .right-section {
-    flex: 1;
-    overflow: hidden; /* Hide overflow content */
-    display: flex;
-    flex-direction: column;
-    padding: 0 10px; /* Add padding to the sections */
-}
-
-.left-section {
-    overflow-x: auto; /* Enable horizontal scrolling */
-}
-
-.divider {
-    width: 1px;
-}
-
-.editor-container {
-    flex-grow: 1;
-    overflow: auto;
-}
-
-.button-container {
-    position: sticky;
-    bottom: 0;
-    background-color: white; /* Ensure background color matches the page */
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn {
-    margin: 5px;
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font to all elements */
 }
 
 .page-header {
@@ -53,20 +16,62 @@ html, body {
     text-align: center;
 }
 
-.btn {
-    background-color: #b11e84;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
-    cursor: pointer;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+.navbar button {
+    background-color: #fff;
+    color: #b11e84;
     border: none;
-    text-align: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navbar button:hover {
+    background-color: #f0f0f0;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 60px); /* Adjust height to account for header */
+}
+
+.left-section, .right-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.divider {
+  width: 1px;
+  background-color: #ccc;
 }
 
 .file-dropdown {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #b11e84;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #a11b74;
 }

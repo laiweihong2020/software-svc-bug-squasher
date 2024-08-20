@@ -1,4 +1,6 @@
 /* Prevent the page from being scrollable */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 html, body {
     overflow: hidden;
     height: 100%;
@@ -89,6 +91,7 @@ html, body {
     background-color: #b11e84;
     color: white;
     text-align: center;
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font to all elements */
 }
 
 .btn {
@@ -117,3 +120,26 @@ html, body {
     font-size: 16px;
     font-weight: bold;
   }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+.navbar button {
+    background-color: #fff;
+    color: #b11e84;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navbar button:hover {
+    background-color: #f0f0f0;
+}

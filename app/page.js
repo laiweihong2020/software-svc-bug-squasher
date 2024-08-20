@@ -2,7 +2,7 @@
 
 import './home.css'; // Import the CSS file
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const router = useRouter();
@@ -11,6 +11,19 @@ export default function Home() {
   const navigateToTriage = () => {
     router.push('/triage');
   };
+
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  };
+
+  useEffect(() => {
+    const username = getCookie('username');
+    if (username) {
+      navigateToTriage();
+    }
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();

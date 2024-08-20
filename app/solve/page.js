@@ -12,6 +12,11 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+// Function to delete a cookie by name
+function deleteCookie(name) {
+  document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+}
+
 const Solve = () => {
   const router = useRouter();
   const [files, setFiles] = useState([]);
@@ -23,8 +28,8 @@ const Solve = () => {
     fetch('/api/files')
       .then(response => response.json())
       .then(data => {
-				const filteredFiles = data.files.filter(file => file !== 'triage.html');
-				setFiles(filteredFiles);
+        const filteredFiles = data.files.filter(file => file !== 'triage.html');
+        setFiles(filteredFiles);
         fetchFileContent(selectedFile);
       })
       .catch(error => console.error('Error fetching files:', error));
@@ -82,10 +87,18 @@ const Solve = () => {
     });
   };
 
+  const handleLogout = () => {
+    deleteCookie('username');
+    router.push('/');
+  };
+
   return (
     <div>
       <header className="page-header">
-        <h1>APU Student Visit 2024 Bug Squasher - Solve</h1>
+        <nav className="navbar">
+          <h1>APU Student Visit 2024 Bug Squasher - Solve</h1>
+          <button onClick={handleLogout}>Logout</button>
+        </nav>
       </header>
       <div className="container">
         <section className="left-section">

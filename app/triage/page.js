@@ -15,6 +15,10 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function deleteCookie(name) {
+  document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+}
+
 const TriagePage = () => {
   const router = useRouter();
   const [htmlContent, setHtmlContent] = useState('');
@@ -133,10 +137,18 @@ const TriagePage = () => {
     }
   };
 
+  const handleLogout = () => {
+    deleteCookie('username');
+    router.push('/');
+  };
+
   return (
     <div>
       <header className="page-header">
-        <h1>APU Student Visit 2024 Bug Squasher - Triage</h1>
+        <nav className="navbar">
+          <h1>APU Student Visit 2024 Bug Squasher - Triage</h1>
+          <button onClick={handleLogout}>Logout</button>
+        </nav>
       </header>
       <div className="container">
         <section className="left-section">
