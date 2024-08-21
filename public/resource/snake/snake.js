@@ -48,16 +48,16 @@ document.addEventListener("keydown", (event) => {
   }
 
   switch (event.key) {
-    case "ArrowUp":
+    case "ArrowDown":
       if (direction.y === 0) direction = { x: 0, y: -1 };
       break;
-    case "ArrowDown":
+    case "ArrowUp":
       if (direction.y === 0) direction = { x: 0, y: 1 };
       break;
-    case "ArrowLeft":
+    case "ArrowRight":
       if (direction.x === 0) direction = { x: -1, y: 0 };
       break;
-    case "ArrowRight":
+    case "ArrowLeft":
       if (direction.x === 0) direction = { x: 1, y: 0 };
       break;
   }
@@ -76,8 +76,6 @@ function updateGame() {
   // Check for collisions with itself
   for (let i = 0; i < snake.length; i++) {
     if (snake[i].x === head.x && snake[i].y === head.y) {
-      alert("Game Over!");
-      resetGame();
       return;
   }
   }
@@ -86,10 +84,10 @@ function updateGame() {
 
   // Check for food collision
   if (head.x === food.x && head.y === food.y) {
-    food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-  } else {
-    snake.pop();
+    food = { x: 5, y: 5};
   }
+  snake.pop();
+
 
   drawBoard();
 }
