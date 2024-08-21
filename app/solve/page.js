@@ -20,7 +20,7 @@ function deleteCookie(name) {
 const Solve = () => {
   const router = useRouter();
   const [files, setFiles] = useState([]);
-  const [selectedFile, setSelectedFile] = useState('index.html'); // Set default file to index.html
+  const [selectedFile, setSelectedFile] = useState('snake.js'); // Set default file to index.html
   const [fileContent, setFileContent] = useState('// Loading...');
   const [iframeKey, setIframeKey] = useState(0); // State to trigger iframe refresh
 

@@ -26,7 +26,7 @@ const TriagePage = () => {
   const [files, setFiles] = useState([]);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [bannerMessage, setBannerMessage] = useState('');
-  const [selectedFile, setSelectedFile] = useState('index.html'); // Set default file to index.html
+  const [selectedFile, setSelectedFile] = useState('snake.js'); // Set default file to index.html
   const quillRef = useRef(null);
   const quillInstance = useRef(null);
 
